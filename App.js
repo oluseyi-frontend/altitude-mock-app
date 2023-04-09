@@ -16,6 +16,12 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    setInterval(() => {
+     handleGetLocationDetails()
+    }, 3000);
+  }, []);
+
+  useEffect(() => {
     if (activeUnit === "m") {
       setAlt(altitude);
     } else {
@@ -33,6 +39,7 @@ export default function App() {
     const location = await Location.getCurrentPositionAsync({
       accuracy: Location.Accuracy.High,
     });
+  
     setAltitude(location.coords.altitude);
     setLongitude(location.coords.longitude);
     setLatitude(location.coords.latitude);
@@ -66,6 +73,7 @@ export default function App() {
         </Text>
         <Text style={{ fontWeight: "700", fontSize: 16 }}>
           {handleDecimalPlace(longitude)}
+          {/* {longitude} */}
         </Text>
       </View>
       <View
@@ -86,6 +94,7 @@ export default function App() {
         </Text>
         <Text style={{ fontWeight: "700", fontSize: 16 }}>
           {handleDecimalPlace(latitude)}
+          {/* {latitude} */}
         </Text>
       </View>
       <View
